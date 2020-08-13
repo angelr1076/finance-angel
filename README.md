@@ -1,3 +1,7 @@
+![alt text](https://res.cloudinary.com/angelrodriguez/image/upload/v1597339056/Annotation_2020-08-13_131501.jpg)
+![alt text](https://res.cloudinary.com/angelrodriguez/image/upload/v1597339056/Annotation_2020-08-13_131511.jpg)
+
+
 # finance-angel
 From the CS50 finance web track
 
