@@ -33,9 +33,9 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Configure CS50 Library to use SQLite database
-# db = SQL("sqlite:///finance.db")
+db = SQL("sqlite:///finance.db")
 # Production version for Heroku deployment
-db = SQL("postgres://ynumkuyzfjccre:5b5ffef2a8ef1d4d791f517594099b9a35187501050bd49afa7fb67fd4270e18@ec2-52-204-20-42.compute-1.amazonaws.com:5432/d9snc05mjji8gu")
+# db = SQL("postgres://ynumkuyzfjccre:5b5ffef2a8ef1d4d791f517594099b9a35187501050bd49afa7fb67fd4270e18@ec2-52-204-20-42.compute-1.amazonaws.com:5432/d9snc05mjji8gu")
 
 # Make sure API key is set
 if not os.environ.get("API_KEY"):
