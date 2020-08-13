@@ -1,0 +1,4 @@
+{% extends "layout.html" %}{% block title %} Register {% endblock %} {% block main %}
+<p>A share of {{ quote.name }} ({{ quote.symbol }}) costs {{ "$%.2f"|format(quote.price) }}</p>
+
+{% endblock %}

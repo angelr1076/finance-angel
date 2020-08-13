@@ -1,0 +1,39 @@
+{% extends "layout.html" %}{% block title %} Portfolio {% endblock %} {% block main %} {{ message }}
+<table class="table table-striped">
+    <tbody>
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Name</th>
+                <th scope="col">Shares</th>
+                <th scope="col">Price</th>
+                <th scope="col">TOTAL</th>
+            </tr>
+        </thead>
+        {% for stock in get_portfolio %}
+        <tr>
+            <td>{{ stock.symbol | upper }}</td>
+            <td>{{ stock.name }}</td>
+            <td>{{ stock.shares }}</td>
+            <td>{{ "${:,.2f}".format(stock.price) }}</td>
+            <td>{{ "${:,.2f}".format(stock.shares * stock.price) }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td scope="col">CASH</td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col">{{ "${:,.2f}".format(cash_amount | float) }}</td>
+        </tr>
+        <tfoot>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"></td>
+            <td scope="col"><b>{{ "${:,.2f}".format(portfolio_total | float) }}</b></td>
+        </tfoot>
+    </tbody>
+</table>
+
+{% endblock %}
