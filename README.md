@@ -1,10 +1,8 @@
 # finance-angel
-From the CS50 finance web track @ https://cs50.harvard.edu/x/2020/tracks/web/finance/
+From the CS50 finance web track
 
 # C$50 Finance
 Implement a website via which users can “buy” and “sell” stocks, a la the below.
-
-# C$50 Finance
 
 Background
 If you’re not quite sure what it means to buy and sell stocks (i.e., shares of a company), head here for a tutorial.
