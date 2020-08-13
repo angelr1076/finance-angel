@@ -45,7 +45,7 @@ if not os.environ.get("API_KEY"):
 def index():
     """Show portfolio of stocks"""
 
-    get_portfolio = db.execute("SELECT * FROM stocks WHERE user_id=:user_id",
+    get_portfolio = db.execute("SELECT symbol, name, shares, price FROM stocks WHERE user_id=:user_id",
     user_id=session["user_id"])
 
     balance = []
@@ -60,6 +60,7 @@ def index():
         # Push balance to list
         balance.append(share_total)
 
+
     # Get user's cash balance from users table
     rows = db.execute("SELECT cash, username FROM users WHERE id=:user_id", user_id=session["user_id"])
     cash_amount = rows[0]["cash"]
@@ -73,7 +74,12 @@ def index():
     # Get username
     username=rows[0]["username"]
 
-    return render_template("index.html", get_portfolio=get_portfolio, cash_amount=cash_amount, portfolio_total=portfolio_total, username=username)
+    # User has not purchased any stocks, display index page with total cash balance
+    if not get_portfolio or not portfolio_total:
+        flash(f"You haven't purchased any shares, yet, {username}.")
+        return render_template("index.html", get_portfolio=get_portfolio, cash_amount=cash_amount, portfolio_total=portfolio_total, username=username)
+
+    return redirect("/")
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -469,16 +475,20 @@ def sell():
 @login_required
 def transfer():
     """Sell shares of stock"""
-    if request.method == "POST":
+    if request.method == "GET":
+
+        return render_template("transfer.html")
+
+    else:
 
         bank = request.form.get("bank")
-
-        if not bank:
-            return apology("must enter a dollar amount in order to transfer money.")
 
         users = db.execute("SELECT cash FROM users WHERE id=:user_id", user_id=session["user_id"])
         balance = users[0]["cash"]
         cash_total = balance + int(bank)
+
+        if not bank:
+            return apology("must enter a dollar amount in order to transfer money.")
 
         db.execute("UPDATE users SET cash=:cash WHERE id=:user_id",
                     cash=cash_total,
@@ -487,9 +497,6 @@ def transfer():
         flash(f"You added ${bank} to your balance")
         return redirect("/")
 
-
-    else:
-        return render_template("transfer.html")
 
 def errorhandler(e):
     """Handle error"""
