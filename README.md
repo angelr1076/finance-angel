@@ -1,6 +1,3 @@
-![alt text](https://res.cloudinary.com/angelrodriguez/image/upload/v1597339056/Annotation_2020-08-13_131501.jpg)
-![alt text](https://res.cloudinary.com/angelrodriguez/image/upload/v1597339056/Annotation_2020-08-13_131511.jpg)
-
 
 # finance-angel
 From the CS50 finance web track
@@ -132,3 +129,6 @@ trying to spend more cash than a user has,
 trying to sell more shares than a user has,
 inputting an invalid stock symbol, and
 including potentially dangerous characters like ' and ; in SQL queries.
+
+![alt text](https://res.cloudinary.com/angelrodriguez/image/upload/v1597339056/Annotation_2020-08-13_131501.jpg)
+![alt text](https://res.cloudinary.com/angelrodriguez/image/upload/v1597339056/Annotation_2020-08-13_131511.jpg)
