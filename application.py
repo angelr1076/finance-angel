@@ -136,10 +136,9 @@ def buy():
                                 user_id=session["user_id"],
                                 symbol=symbol)
 
+        total_shares = portfolio[0]["shares"] + int(shares)
         # If symbol exists
         if len(portfolio) == 1:
-
-            total_shares = portfolio[0]["shares"] + int(shares)
 
             db.execute("UPDATE stocks SET name=:name, shares=:shares, price=:price WHERE user_id=:user_id AND symbol=:symbol",
                         name=quote["name"],
@@ -182,7 +181,7 @@ def buy():
         # Total stocks plus cash
         portfolio_total = cash_amount + sum_total
 
-        flash(f"You just purchased {shares} shares of {symbol}.")
+        flash(f"{transaction}!")
         return render_template("index.html", get_portfolio=get_portfolio, cash_amount=cash_amount, portfolio_total=portfolio_total, username=username)
 
     # GET request
@@ -464,7 +463,7 @@ def sell():
                 # Delete records with 0 share values
                 db.execute("DELETE FROM stocks WHERE shares=?", 0)
 
-        flash(f"You just sold {shares} shares of {symbol}.")
+        flash(f"{transaction}!")
         return render_template("index.html", get_portfolio=get_portfolio, cash_amount=cash_amount, portfolio_total=portfolio_total, username=username)
 
 @app.route("/transfer", methods=["GET", "POST"])
