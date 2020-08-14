@@ -136,9 +136,11 @@ def buy():
                                 user_id=session["user_id"],
                                 symbol=symbol)
 
-        total_shares = portfolio[0]["shares"] + int(shares)
+
         # If symbol exists
         if len(portfolio) == 1:
+
+            total_shares = portfolio[0]["shares"] + int(shares)
 
             db.execute("UPDATE stocks SET name=:name, shares=:shares, price=:price WHERE user_id=:user_id AND symbol=:symbol",
                         name=quote["name"],
